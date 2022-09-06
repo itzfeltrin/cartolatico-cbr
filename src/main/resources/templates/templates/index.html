@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+<!-- Header -->
+<th:block layout:fragment="header-title">
+    Dashboard
+    <small>Painel Administrativo</small>
+</th:block>
+<!-- Breadcrumb -->
+<th:block layout:fragment="breadcrumb">
+    <li class="active"><i class="fa fa-home"></i> Home</li>
+</th:block>
+<!-- Content -->
+<th:block layout:fragment="content">
+    <!--<div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Title</h3>
+        </div>
+        <div class="box-body">
+            Start creating your amazing application!
+        </div>
+        <div class="box-footer">
+            Footer
+        </div>
+    </div>-->
+</th:block>
+</body>
+</html>

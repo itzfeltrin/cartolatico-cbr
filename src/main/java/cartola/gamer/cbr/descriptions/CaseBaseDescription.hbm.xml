@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+    <class name="cartola.gamer.cbr.descriptions.CaseBaseDescription" table="casos">
+        <id name="id" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="codigo" column="codigo"/>
+        <property name="tipo_incidente" column="tipo_incidente"/>
+        <property name="hora_deteccao" column="hora_deteccao"/>
+        <property name="ip_origem" column="ip_origem"/>
+        <property name="portas_origem" column="portas_origem"/>
+        <property name="url_maliciosa" column="url_maliciosa"/>
+        <property name="hostname_origem" column="hostname_origem"/>
+        <property name="ip_cc" column="ip_cc"/>
+        <property name="porta_cc" column="porta_cc"/>
+        <property name="hostname_cc" column="hostname_cc"/>
+        <property name="nome_malware_falha" column="nome_malware_falha"/>
+        <property name="titulo" column="titulo"/>
+        <property name="tamanho" column="tamanho"/>
+        <property name="protocolo" column="protocolo"/>
+        <property name="sistema_operacional" column="sistema_operacional"/>
+        <property name="conta" column="conta"/>
+        <property name="informacoes" column="informacoes"/>
+        <property name="aplicacao" column="aplicacao"/>
+        <property name="tentativas" column="tentativas"/>
+        <property name="tratamento_sugerido" column="tratamento_sugerido"/>
+        <property name="diagnostico_inicial" column="diagnostico_inicial"/>
+        <property name="passos" column="passos"/>
+    </class>
+</hibernate-mapping>

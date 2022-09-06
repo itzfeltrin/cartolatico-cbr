@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      data-layout-decorate="~{layout}">
+<head>
+    <title th:utext="${moduloTitulo}"></title>
+</head>
+<body>
+<!-- Header -->
+<th:block layout:fragment="header-title">
+    <th:block th:utext="${moduloTitulo}"></th:block>
+    <small>Listar Registros</small>
+</th:block>
+<!-- Breadcrumb -->
+<th:block layout:fragment="breadcrumb">
+    <li><a th:href="@{/}"><i class="fa fa-home"></i> Home</a></li>
+    <li class="active" th:utext="${moduloTitulo}"></li>
+</th:block>
+<!-- Content -->
+<th:block layout:fragment="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <!--<a th:href="${routeBase} + @{/novo}" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Novo Registro"><i class="fa fa-plus" aria-hidden="true"></i> Novo</a>-->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <!--<th:block th:replace="fragments/alert"></th:block>
+
+                    <table id="table" class="dataTables table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Código</th>
+                                <th class="text-center">Tipo Incidente</th>
+                                <th class="text-center">Hora Detecção</th>
+                                <th class="text-center">Tipo Falha</th>
+                                <th class="text-center">IP Origem</th>
+                                <th class="text-center">S.O.</th>
+                                <th class="text-center">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="registro : ${registros}">
+                                <td width="80" class="text-center" th:text="${registro.id}"></td>
+                                <td th:text="${registro.codigo}"></td>
+                                <td th:text="${registro.tipo_incidente}"></td>
+                                <td th:text="${registro.hora_deteccao}"></td>
+                                <td th:text="${registro.nome_malware_falha}"></td>
+                                <td th:text="${registro.ip_origem}"></td>
+                                <td th:text="${registro.sistema_operacional}"></td>
+                                <td width="100" class="text-center">
+                                    <a th:href="${routeBase} + @{/{id}(id=${registro.id})} + '/editar'" class="btn btn-sm btn-info"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                    <form th:action="${routeBase} + @{/{id}(id=${registro.id})} + '/deletar'" th:method="delete" style="display: inline;">
+                                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>-->
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</th:block>
+</body>
+</html>

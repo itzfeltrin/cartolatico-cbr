@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      data-layout-decorate="~{layout}"
+      th:object="${registro}">
+<head>
+    <title th:utext="(${id}? 'Editar Registro - ' : 'Novo Registro - ') + ${moduloTitulo}"></title>
+</head>
+<body>
+<!-- Header -->
+<th:block layout:fragment="header-title">
+    <th:block th:text="${id}? 'Editar Registro' : 'Novo Registro'"></th:block>
+    <small>
+        <th:block th:utext="${moduloTitulo}"></th:block>
+    </small>
+</th:block>
+<!-- Breadcrumb -->
+<th:block layout:fragment="breadcrumb">
+    <li><a th:href="@{/}"><i class="fa fa-home"></i> Home</a></li>
+    <li><a th:href="${routeBase}" th:utext="${moduloTitulo}"></a></li>
+    <li class="active" th:text="${id}? 'Editar Registro' : 'Novo Registro'"></li>
+</th:block>
+<!-- Content -->
+<th:block layout:fragment="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <th:block th:if="${id}">
+                    <form th:if="${id}" action="" th:action="${routeBase} + @{/{id}(id=${id})} + '/atualizar'" th:object="${registro}" th:method="put" method="put" role="form">
+                    <input type="hidden" name="id" th:field="*{id}" />
+                </th:block>
+                <th:block th:if="!${id}">
+                    <form action="" th:action="${routeBase} + @{/store}" th:object="${registro}" th:method="post" method="post" role="form">
+                </th:block>
+                    <div class="box-body">
+                        <th:block th:replace="fragments/alertForm"></th:block>
+
+                        <div class="form-group" th:classappend="${#fields.hasErrors('descricao')} ? 'has-error' : ''">
+                            <label>Descrição</label>
+                            <textarea name="descricao" th:field="*{descricao}" class="form-control" rows="3" placeholder="Descrição..."></textarea>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="text-right">
+                            <a th:href="${routeBase}" class="btn btn-default btn-xs-block hidden-xs" data-toggle="tooltip" title="Voltar">
+                                <i class="fa fa-angle-double-left" aria-hidden="true"></i> Voltar
+                            </a>
+                            <button type="submit" class="btn btn-success btn-xs-block btn-submit"><i class="fa fa-save"></i> Salvar</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</th:block>
+</body>
+</html>

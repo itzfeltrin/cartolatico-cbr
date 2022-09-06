@@ -1,0 +1,9 @@
+<div th:if="${error}" class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h5 style="margin: 0;"><i class="icon fa fa-ban"></i> <th:block th:text="${error}"></th:block></h5>
+</div>
+
+<div th:if="${success}" class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h5 style="margin: 0;"><i class="icon fa fa-check"></i> <th:block th:text="${success}"></th:block></h5>
+</div>
