@@ -26,7 +26,7 @@ public class CBR{
         try{
             System.out.println("Iniciando conexão es.ucm.fdi.gaia.jcolibri...");
             _connector = new DataBaseConnector();
-            _connector.initFromXMLfile(es.ucm.fdi.gaia.jcolibri.util.FileIO.findFile("cartola/gamer/cbr/hibernate/databaseconfig.xml"));
+            _connector.initFromXMLfile(es.ucm.fdi.gaia.jcolibri.util.FileIO.findFile("main/java/cartola/gamer/cbr/hibernate/databaseconfig.xml"));
         }catch(Exception e){
             e.printStackTrace();
         }

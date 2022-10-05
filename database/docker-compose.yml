@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  cartolatico_db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cartolatico
+    networks:
+      cartolatico_network:
+    volumes:
+      - cartolatico_volume:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+networks:
+  cartolatico_network:
+
+volumes:
+  cartolatico_volume:
