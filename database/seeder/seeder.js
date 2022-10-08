@@ -100,7 +100,7 @@ async function seedPlayers() {
   const path = require("path");
   const csv = require("csv");
   const { get } = require("lodash");
-  const { getPosition, log } = require("./helpers");
+  const { getPosition } = require("./helpers");
 
   const roundsDirPath = path.resolve(__dirname, "data", "rounds");
 
