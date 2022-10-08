@@ -15,7 +15,7 @@ public class CaseBaseDescription implements CaseComponent {
 	private String mando;
 	private Integer id_oponente;
 
-	public long getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
@@ -27,7 +27,7 @@ public class CaseBaseDescription implements CaseComponent {
 		return this.id_rodada;
 	}
 
-	public void setCodigo(Integer id_rodada) {
+	public void setIdRodada(Integer id_rodada) {
 		this.id_rodada = id_rodada;
 	}
 
