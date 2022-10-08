@@ -4,7 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "mysql2": "^2.3.3"
+    "csv": "^6.2.0",
+    "lodash": "^4.17.21",
+    "mysql2": "^2.3.3",
+    "node-fetch": "^3.2.10"
   },
   "scripts": {
     "start": "node seeder.js"
