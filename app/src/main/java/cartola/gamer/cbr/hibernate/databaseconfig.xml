@@ -1,5 +1,5 @@
 <DataBaseConfiguration>
-    <HibernateConfigFile>cartola/gamer/cbr/hibernate/hibernate.cfg.xml</HibernateConfigFile>
-    <DescriptionMappingFile>cartola/gamer/cbr/descriptions/CaseBaseDescription.hbm.xml</DescriptionMappingFile>
-    <DescriptionClassName>CaseBaseDescription</DescriptionClassName>
+	<HibernateConfigFile>cartola/gamer/cbr/hibernate/hibernate.cfg.xml</HibernateConfigFile>
+	<DescriptionMappingFile>cartola/gamer/cbr/descriptions/CaseBaseDescription.hbm.xml</DescriptionMappingFile>
+	<DescriptionClassName>CaseBaseDescription</DescriptionClassName>
 </DataBaseConfiguration>

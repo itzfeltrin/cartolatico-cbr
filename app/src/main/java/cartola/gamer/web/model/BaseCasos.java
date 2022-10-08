@@ -78,7 +78,7 @@ public class BaseCasos{
     @Column(name = "passos")
     private String passos;
 
-    public BaseCasos(){}
+	public BaseCasos(){}
 
 	public long getId() {
 		return id;
