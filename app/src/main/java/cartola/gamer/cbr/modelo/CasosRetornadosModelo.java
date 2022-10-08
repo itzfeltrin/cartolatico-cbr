@@ -2,35 +2,33 @@ package cartola.gamer.cbr.modelo;
 
 import cartola.gamer.cbr.descriptions.CaseBaseDescription;
 
+public class CasosRetornadosModelo {
+	CaseBaseDescription caseRetrieved;
+	Double similaridadeDoCasoComAconsulta;
+	Double custo;
 
-public class CasosRetornadosModelo{
-    CaseBaseDescription caseRetrieved;
-    double similaridadeDoCasoComAconsulta;
-    int tipoIncidente;
+	public CaseBaseDescription getCaseRetrieved() {
+		return this.caseRetrieved;
+	}
 
+	public void setCaseRetrieved(CaseBaseDescription caseRetrieved) {
+		this.caseRetrieved = caseRetrieved;
+	}
 
-    public CaseBaseDescription getCaseRetrieved(){
-        return caseRetrieved;
-    }
+	public Double getSimilaridadeDoCasoComAconsulta() {
+		return this.similaridadeDoCasoComAconsulta;
+	}
 
-    public void setCaseRetrieved(CaseBaseDescription caseRetrieved){
-        this.caseRetrieved = caseRetrieved;
-    }
+	public void setSimilaridadeDoCasoComAconsulta(Double similaridadeDoCasoComAconsulta) {
+		this.similaridadeDoCasoComAconsulta = similaridadeDoCasoComAconsulta;
+	}
 
-    public double getSimilaridadeDoCasoComAconsulta(){
-        return similaridadeDoCasoComAconsulta;
-    }
+	public Double getCusto() {
+		return this.custo;
+	}
 
-    public void setSimilaridadeDoCasoComAconsulta(double similaridadeDoCasoComAconsulta){
-        this.similaridadeDoCasoComAconsulta = similaridadeDoCasoComAconsulta;
-    }
-
-    public int getTipoIncidente(){
-        return tipoIncidente;
-    }
-
-    public void setTipoIncidente(int tipoIncidente){
-        this.tipoIncidente = tipoIncidente;
-    }
+	public void setCusto(Double custo) {
+		this.custo = custo;
+	}
 
 }

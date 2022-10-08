@@ -76,155 +76,67 @@ public class CBR {
 
 		PesosConsulta pesos = new PesosConsulta();
 
-		// codigo
-		if (desc.getCodigo() != null) {
-			Attribute codigo = new Attribute("codigo", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("codigo", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(codigo, pesos.getCodigo());
-			System.out.println("SimConfig codigo: " + simConfig.getLocalSimilFunction(codigo));
+		if (desc.getIdRodada() != null) {
+			Attribute id_rodada = new Attribute("id_rodada", CaseBaseDescription.class);
+			simConfig.addMapping(new Attribute("id_rodada", CaseBaseDescription.class), new Equal());
+			simConfig.setWeight(id_rodada, pesos.getIdRodada());
+			System.out.println("SimConfig id_rodada: " + simConfig.getLocalSimilFunction(id_rodada));
 		}
-		// tipo_incidente
-		if (desc.getTipo_incidente() != null) {
-			Attribute tipo_incidente = new Attribute("tipo_incidente", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("tipo_incidente", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(tipo_incidente, pesos.getTipo_incidente());
-			System.out.println("SimConfig tipo_incidente: " + simConfig.getLocalSimilFunction(tipo_incidente));
+
+		if (desc.getNome() != null) {
+			Attribute nome = new Attribute("nome", CaseBaseDescription.class);
+			simConfig.addMapping(new Attribute("nome", CaseBaseDescription.class), new Equal());
+			simConfig.setWeight(nome, pesos.getNome());
+			System.out.println("SimConfig nome: " + simConfig.getLocalSimilFunction(nome));
 		}
-		// hora_deteccao
-		if (desc.getHora_deteccao() != null) {
-			Attribute hora_deteccao = new Attribute("hora_deteccao", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("hora_deteccao", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(hora_deteccao, pesos.getHora_deteccao());
-			System.out.println("SimConfig hora_deteccao: " + simConfig.getLocalSimilFunction(hora_deteccao));
+
+		if (desc.getPosicao() != null) {
+			Attribute posicao = new Attribute("posicao", CaseBaseDescription.class);
+			simConfig.addMapping(new Attribute("posicao", CaseBaseDescription.class), new Equal());
+			simConfig.setWeight(posicao, pesos.getPosicao());
+			System.out.println("SimConfig posicao: " + simConfig.getLocalSimilFunction(posicao));
 		}
-		// ip_origem
-		if (desc.getIp_origem() != null) {
-			Attribute ip_origem = new Attribute("ip_origem", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("ip_origem", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(ip_origem, pesos.getIp_origem());
-			System.out.println("SimConfig ip_origem: " + simConfig.getLocalSimilFunction(ip_origem));
+
+		if (desc.getStatus() != null) {
+			Attribute status = new Attribute("c", CaseBaseDescription.class);
+			simConfig.addMapping(new Attribute("posicao", CaseBaseDescription.class), new Equal());
+			simConfig.setWeight(status, pesos.getStatus());
+			System.out.println("SimConfig status: " + simConfig.getLocalSimilFunction(status));
 		}
-		// portas_origem
-		if (desc.getPortas_origem() != null) {
-			Attribute portas_origem = new Attribute("portas_origem", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("portas_origem", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(portas_origem, pesos.getPortas_origem());
-			System.out.println("SimConfig portas_origem: " + simConfig.getLocalSimilFunction(portas_origem));
+
+		if (desc.getCusto() != null) {
+			Attribute custo = new Attribute("custo", CaseBaseDescription.class);
+			simConfig.addMapping(new Attribute("custo", CaseBaseDescription.class), new Equal());
+			simConfig.setWeight(custo, pesos.getCusto());
+			System.out.println("SimConfig custo: " + simConfig.getLocalSimilFunction(custo));
 		}
-		// url_maliciosa
-		if (desc.getUrl_maliciosa() != null) {
-			Attribute url_maliciosa = new Attribute("url_maliciosa", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("url_maliciosa", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(url_maliciosa, pesos.getUrl_maliciosa());
-			System.out.println("SimConfig url_maliciosa: " + simConfig.getLocalSimilFunction(url_maliciosa));
+
+		if (desc.getUltimaPontuacao() != null) {
+			Attribute ultima_pontuacao = new Attribute("ultima_pontuacao", CaseBaseDescription.class);
+			simConfig.addMapping(new Attribute("ultima_pontuacao", CaseBaseDescription.class), new Equal());
+			simConfig.setWeight(ultima_pontuacao, pesos.getUltimaPontuacao());
+			System.out.println("SimConfig ultima_pontuacao: " + simConfig.getLocalSimilFunction(ultima_pontuacao));
 		}
-		// hostname_origem
-		if (desc.getHostname_origem() != null) {
-			Attribute hostname_origem = new Attribute("hostname_origem", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("hostname_origem", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(hostname_origem, pesos.getHostname_origem());
-			System.out.println("SimConfig hostname_origem: " + simConfig.getLocalSimilFunction(hostname_origem));
+
+		if (desc.getMediaPontuacao() != null) {
+			Attribute media_pontuacao = new Attribute("media_pontuacao", CaseBaseDescription.class);
+			simConfig.addMapping(new Attribute("media_pontuacao", CaseBaseDescription.class), new Equal());
+			simConfig.setWeight(media_pontuacao, pesos.getMediaPontuacao());
+			System.out.println("SimConfig media_pontuacao: " + simConfig.getLocalSimilFunction(media_pontuacao));
 		}
-		// ip_cc
-		if (desc.getIp_cc() != null) {
-			Attribute ip_cc = new Attribute("ip_cc", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("ip_cc", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(ip_cc, pesos.getIp_cc());
-			System.out.println("SimConfig ip_cc: " + simConfig.getLocalSimilFunction(ip_cc));
+
+		if (desc.getMando() != null) {
+			Attribute mando = new Attribute("mando", CaseBaseDescription.class);
+			simConfig.addMapping(new Attribute("mando", CaseBaseDescription.class), new Equal());
+			simConfig.setWeight(mando, pesos.getMando());
+			System.out.println("SimConfig mando: " + simConfig.getLocalSimilFunction(mando));
 		}
-		// porta_cc
-		if (desc.getPorta_cc() != null) {
-			Attribute porta_cc = new Attribute("porta_cc", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("porta_cc", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(porta_cc, pesos.getPorta_cc());
-			System.out.println("SimConfig porta_cc: " + simConfig.getLocalSimilFunction(porta_cc));
-		}
-		// hostname_cc
-		if (desc.getHostname_cc() != null) {
-			Attribute hostname_cc = new Attribute("hostname_cc", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("hostname_cc", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(hostname_cc, pesos.getHostname_cc());
-			System.out.println("SimConfig hostname_cc: " + simConfig.getLocalSimilFunction(hostname_cc));
-		}
-		// nome_malware_falha
-		if (desc.getNome_malware_falha() != null) {
-			Attribute nome_malware_falha = new Attribute("nome_malware_falha", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("nome_malware_falha", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(nome_malware_falha, pesos.getNome_malware_falha());
-			System.out.println("SimConfig nome_malware_falha: " + simConfig.getLocalSimilFunction(nome_malware_falha));
-		}
-		// titulo
-		if (desc.getTitulo() != null) {
-			Attribute titulo = new Attribute("titulo", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("titulo", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(titulo, pesos.getTitulo());
-			System.out.println("SimConfig titulo: " + simConfig.getLocalSimilFunction(titulo));
-		}
-		// tamanho
-		if (desc.getTamanho() != null) {
-			Attribute tamanho = new Attribute("tamanho", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("tamanho", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(tamanho, pesos.getTamanho());
-			System.out.println("SimConfig tamanho: " + simConfig.getLocalSimilFunction(tamanho));
-		}
-		// protocolo
-		if (desc.getProtocolo() != null) {
-			Attribute protocolo = new Attribute("protocolo", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("protocolo", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(protocolo, pesos.getProtocolo());
-			System.out.println("SimConfig protocolo: " + simConfig.getLocalSimilFunction(protocolo));
-		}
-		// sistema_operacional
-		if (desc.getSistema_operacional() != null) {
-			Attribute sistema_operacional = new Attribute("sistema_operacional", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("sistema_operacional", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(sistema_operacional, pesos.getSistema_operacional());
-			System.out
-					.println("SimConfig sistema_operacional: " + simConfig.getLocalSimilFunction(sistema_operacional));
-		}
-		// conta
-		if (desc.getConta() != null) {
-			Attribute conta = new Attribute("conta", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("conta", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(conta, pesos.getConta());
-			System.out.println("SimConfig conta: " + simConfig.getLocalSimilFunction(conta));
-		}
-		// informacoes
-		if (desc.getInformacoes() != null) {
-			Attribute informacoes = new Attribute("informacoes", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("informacoes", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(informacoes, pesos.getInformacoes());
-			System.out.println("SimConfig informacoes: " + simConfig.getLocalSimilFunction(informacoes));
-		}
-		// aplicacao
-		if (desc.getAplicacao() != null) {
-			Attribute aplicacao = new Attribute("aplicacao", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("aplicacao", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(aplicacao, pesos.getAplicacao());
-			System.out.println("SimConfig aplicacao: " + simConfig.getLocalSimilFunction(aplicacao));
-		}
-		// tentativas
-		if (desc.getTentativas() != null) {
-			Attribute tentativas = new Attribute("tentativas", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("tentativas", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(tentativas, pesos.getTentativas());
-			System.out.println("SimConfig tentativas: " + simConfig.getLocalSimilFunction(tentativas));
-		}
-		// tratamento_sugerido
-		if (desc.getTratamento_sugerido() != null) {
-			Attribute tratamento_sugerido = new Attribute("tratamento_sugerido", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("tratamento_sugerido", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(tratamento_sugerido, pesos.getTratamento_sugerido());
-			System.out
-					.println("SimConfig tratamento_sugerido: " + simConfig.getLocalSimilFunction(tratamento_sugerido));
-		}
-		// diagnostico_inicial
-		if (desc.getDiagnostico_inicial() != null) {
-			Attribute diagnostico_inicial = new Attribute("diagnostico_inicial", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("diagnostico_inicial", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(diagnostico_inicial, pesos.getDiagnostico_inicial());
-			System.out
-					.println("SimConfig diagnostico_inicial: " + simConfig.getLocalSimilFunction(diagnostico_inicial));
+
+		if (desc.getIdOponente() != null) {
+			Attribute id_oponente = new Attribute("id_oponente", CaseBaseDescription.class);
+			simConfig.addMapping(new Attribute("id_oponente", CaseBaseDescription.class), new Equal());
+			simConfig.setWeight(id_oponente, pesos.getIdOponente());
+			System.out.println("SimConfig id_oponente: " + simConfig.getLocalSimilFunction(id_oponente));
 		}
 
 		Collection<RetrievalResult> eval = NNScoringMethod.evaluateSimilarity(_caseBase.getCases(), query, simConfig);

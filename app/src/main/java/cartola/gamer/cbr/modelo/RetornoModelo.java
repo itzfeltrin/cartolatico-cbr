@@ -5,12 +5,12 @@ import java.util.List;
 
 public class RetornoModelo {
 	List<CasosRetornadosModelo> listaCasosRetornados;
-	HashMap<Integer, Integer> hashCasosRecuperados;
+	HashMap<Double, Integer> hashCasosRecuperados;
 
 	public RetornoModelo(List<CasosRetornadosModelo> listaCasosRetornados,
-			HashMap<Integer, Integer> hashCasosRecuperados) {
-		listaCasosRetornados = listaCasosRetornados;
-		hashCasosRecuperados = hashCasosRecuperados;
+			HashMap<Double, Integer> hashCasosRecuperados) {
+		this.listaCasosRetornados = listaCasosRetornados;
+		this.hashCasosRecuperados = hashCasosRecuperados;
 	}
 
 	public List<CasosRetornadosModelo> getListaCasosRetornados() {
@@ -21,11 +21,11 @@ public class RetornoModelo {
 		this.listaCasosRetornados = listaCasosRetornados;
 	}
 
-	public HashMap<Integer, Integer> getHashCasosRecuperados() {
+	public HashMap<Double, Integer> getHashCasosRecuperados() {
 		return hashCasosRecuperados;
 	}
 
-	public void setHashCasosRecuperados(HashMap<Integer, Integer> hashCasosRecuperados) {
+	public void setHashCasosRecuperados(HashMap<Double, Integer> hashCasosRecuperados) {
 		this.hashCasosRecuperados = hashCasosRecuperados;
 	}
 }

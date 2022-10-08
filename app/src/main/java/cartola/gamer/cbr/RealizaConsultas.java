@@ -46,19 +46,19 @@ public class RealizaConsultas {
 			CasosRetornadosModelo casosRetornados = new CasosRetornadosModelo();
 			CaseBaseDescription description = (CaseBaseDescription) best.get_case().getDescription();
 			casosRetornados.setSimilaridadeDoCasoComAconsulta(best.getEval());
-			casosRetornados.setTipoIncidente(description.getTipo_incidente());
+			casosRetornados.setCusto(description.getCusto());
 			listaCasosRetornados.add(casosRetornados);
 		}
 
-		HashMap<Integer, Integer> hashCasosRecuperados = new HashMap<Integer, Integer>();
+		HashMap<Double, Integer> hashCasosRecuperados = new HashMap<Double, Integer>();
 		// foreach para adicionar a quantidade de acumulados
 		for (int i = 0; i < listaCasosRetornados.size(); i++) {
 			CasosRetornadosModelo casoRetornado = listaCasosRetornados.get(i);
-			if (hashCasosRecuperados.containsKey(casoRetornado.getTipoIncidente()))
-				hashCasosRecuperados.put(casoRetornado.getTipoIncidente(),
-						hashCasosRecuperados.get(casoRetornado.getTipoIncidente() + 1));
+			if (hashCasosRecuperados.containsKey(casoRetornado.getCusto()))
+				hashCasosRecuperados.put(casoRetornado.getCusto(),
+						hashCasosRecuperados.get(casoRetornado.getCusto() + 1));
 			else
-				hashCasosRecuperados.put(casoRetornado.getTipoIncidente(), hashCasosRecuperados.get(1));
+				hashCasosRecuperados.put(casoRetornado.getCusto(), hashCasosRecuperados.get(1));
 		}
 
 		RetornoModelo retorno = new RetornoModelo(listaCasosRetornados, hashCasosRecuperados);
