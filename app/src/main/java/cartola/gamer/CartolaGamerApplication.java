@@ -19,22 +19,22 @@ public class CartolaGamerApplication {
 		RealizaConsultas realizaConsultas = new RealizaConsultas();
 		
 		CaseBaseDescription gameState = new CaseBaseDescription();
-		gameState.setId(101997);
-		gameState.setIdRodada(30);
-		gameState.setNome("Braian Romero");
+//		gameState.setId(101997);
+//		gameState.setId_rodada(30);
+//		gameState.setNome("Braian Romero");
 		gameState.setPosicao("ata");
 		gameState.setStatus(7);
 		gameState.setCusto(4.99);
-		gameState.setUltimaPontuacao(2.00);
-		gameState.setMediaPontuacao(1.32);
+//		gameState.setUltima_pontuacao(2.00);
+//		gameState.setMedia_pontuacao(1.32);
 		gameState.setMando("F");
-		gameState.setIdOponente(262);
+		gameState.setId_oponente(262);
 		
 		try {
 			RetornoModelo result = realizaConsultas.retornaConsulta(gameState);
 			List<CasosRetornadosModelo> casosRetornados = result.getListaCasosRetornados();
 			for (CasosRetornadosModelo caso : casosRetornados) {
-				System.out.println(caso.toString());
+				System.out.println(caso.getCaseRetrieved().toString());
 			}
 		} catch (ExecutionException e) {
 			// TODO Auto-generated catch block

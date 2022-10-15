@@ -36,7 +36,7 @@ public class PesosConsulta {
 		this.posicao = posicao;
 	}
 
-	public Double getStatus() {
+	public Double getCaseStatus() {
 		return this.status;
 	}
 

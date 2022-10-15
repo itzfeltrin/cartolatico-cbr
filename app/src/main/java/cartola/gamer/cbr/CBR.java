@@ -76,7 +76,7 @@ public class CBR {
 
 		PesosConsulta pesos = new PesosConsulta();
 
-		if (desc.getIdRodada() != null) {
+		if (desc.getId_rodada() != null) {
 			Attribute id_rodada = new Attribute("id_rodada", CaseBaseDescription.class);
 			simConfig.addMapping(new Attribute("id_rodada", CaseBaseDescription.class), new Equal());
 			simConfig.setWeight(id_rodada, pesos.getIdRodada());
@@ -98,9 +98,9 @@ public class CBR {
 		}
 
 		if (desc.getStatus() != null) {
-			Attribute status = new Attribute("c", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("posicao", CaseBaseDescription.class), new Equal());
-			simConfig.setWeight(status, pesos.getStatus());
+			Attribute status = new Attribute("status", CaseBaseDescription.class);
+			simConfig.addMapping(new Attribute("status", CaseBaseDescription.class), new Equal());
+			simConfig.setWeight(status, pesos.getCaseStatus());
 			System.out.println("SimConfig status: " + simConfig.getLocalSimilFunction(status));
 		}
 
@@ -111,14 +111,14 @@ public class CBR {
 			System.out.println("SimConfig custo: " + simConfig.getLocalSimilFunction(custo));
 		}
 
-		if (desc.getUltimaPontuacao() != null) {
+		if (desc.getUltima_pontuacao() != null) {
 			Attribute ultima_pontuacao = new Attribute("ultima_pontuacao", CaseBaseDescription.class);
 			simConfig.addMapping(new Attribute("ultima_pontuacao", CaseBaseDescription.class), new Equal());
 			simConfig.setWeight(ultima_pontuacao, pesos.getUltimaPontuacao());
 			System.out.println("SimConfig ultima_pontuacao: " + simConfig.getLocalSimilFunction(ultima_pontuacao));
 		}
 
-		if (desc.getMediaPontuacao() != null) {
+		if (desc.getMedia_pontuacao() != null) {
 			Attribute media_pontuacao = new Attribute("media_pontuacao", CaseBaseDescription.class);
 			simConfig.addMapping(new Attribute("media_pontuacao", CaseBaseDescription.class), new Equal());
 			simConfig.setWeight(media_pontuacao, pesos.getMediaPontuacao());
@@ -132,7 +132,7 @@ public class CBR {
 			System.out.println("SimConfig mando: " + simConfig.getLocalSimilFunction(mando));
 		}
 
-		if (desc.getIdOponente() != null) {
+		if (desc.getId_oponente() != null) {
 			Attribute id_oponente = new Attribute("id_oponente", CaseBaseDescription.class);
 			simConfig.addMapping(new Attribute("id_oponente", CaseBaseDescription.class), new Equal());
 			simConfig.setWeight(id_oponente, pesos.getIdOponente());

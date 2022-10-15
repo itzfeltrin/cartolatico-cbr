@@ -45,6 +45,7 @@ public class RealizaConsultas {
 		for (RetrievalResult best : bestMatch) {
 			CasosRetornadosModelo casosRetornados = new CasosRetornadosModelo();
 			CaseBaseDescription description = (CaseBaseDescription) best.get_case().getDescription();
+			casosRetornados.setCaseRetrieved(description);
 			casosRetornados.setSimilaridadeDoCasoComAconsulta(best.getEval());
 			casosRetornados.setCusto(description.getCusto());
 			listaCasosRetornados.add(casosRetornados);
