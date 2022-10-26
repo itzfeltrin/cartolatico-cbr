@@ -11,6 +11,18 @@ public class PesosConsulta {
 	Double media_pontuacao;
 	Double mando;
 	Double id_oponente;
+	
+	public PesosConsulta() {
+		this.id_rodada = 1.00;
+		this.nome = 1.00;
+		this.posicao = 1.00;
+		this.status = 1.00;
+		this.custo = 1.00;
+		this.ultima_pontuacao = 1.00;
+		this.media_pontuacao = 1.00;
+		this.mando = 1.00;
+		this.id_oponente = 1.00;		
+	}
 
 	public Double getIdRodada() {
 		return this.id_rodada;
