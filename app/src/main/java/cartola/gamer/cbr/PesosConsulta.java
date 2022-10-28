@@ -2,28 +2,36 @@ package cartola.gamer.cbr;
 
 public class PesosConsulta {
 	// Double id;
+	Double id_atleta;
 	Double id_rodada;
 	Double nome;
 	Double posicao;
 	Double status;
 	Double custo;
+	Double pontuacao;
 	Double ultima_pontuacao;
 	Double media_pontuacao;
 	Double mando;
 	Double id_oponente;
 	
 	public PesosConsulta() {
+		this.id_atleta = 1.00;
 		this.id_rodada = 1.00;
 		this.nome = 1.00;
 		this.posicao = 1.00;
 		this.status = 1.00;
 		this.custo = 1.00;
+		this.pontuacao = 1.00;
 		this.ultima_pontuacao = 1.00;
 		this.media_pontuacao = 1.00;
 		this.mando = 1.00;
 		this.id_oponente = 1.00;		
 	}
 
+	public Double getIdAtleta() {
+		return this.id_atleta;
+	}
+	
 	public Double getIdRodada() {
 		return this.id_rodada;
 	}
@@ -62,6 +70,14 @@ public class PesosConsulta {
 
 	public void setCusto(Double custo) {
 		this.custo = custo;
+	}
+	
+	public Double getPontuacao() {
+		return this.pontuacao;
+	}
+
+	public void setPontuacao(Double pontuacao) {
+		this.pontuacao = pontuacao;
 	}
 
 	public Double getUltimaPontuacao() {

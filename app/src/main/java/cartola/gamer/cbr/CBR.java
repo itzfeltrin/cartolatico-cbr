@@ -16,6 +16,8 @@ import es.ucm.fdi.gaia.jcolibri.method.retrieve.NNretrieval.NNConfig;
 import es.ucm.fdi.gaia.jcolibri.method.retrieve.NNretrieval.NNScoringMethod;
 import es.ucm.fdi.gaia.jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
 import es.ucm.fdi.gaia.jcolibri.method.retrieve.NNretrieval.similarity.local.Equal;
+import es.ucm.fdi.gaia.jcolibri.method.retrieve.NNretrieval.similarity.local.Interval;
+import es.ucm.fdi.gaia.jcolibri.method.retrieve.NNretrieval.similarity.local.Threshold;
 import es.ucm.fdi.gaia.jcolibri.method.retrieve.selection.SelectCases;
 
 public class CBR {
@@ -106,7 +108,7 @@ public class CBR {
 
 		if (desc.getCusto() != null) {
 			Attribute custo = new Attribute("custo", CaseBaseDescription.class);
-			simConfig.addMapping(new Attribute("custo", CaseBaseDescription.class), new Equal());
+			simConfig.addMapping(new Attribute("custo", CaseBaseDescription.class), new Interval(2.00));
 			simConfig.setWeight(custo, pesos.getCusto());
 			System.out.println("SimConfig custo: " + simConfig.getLocalSimilFunction(custo));
 		}
