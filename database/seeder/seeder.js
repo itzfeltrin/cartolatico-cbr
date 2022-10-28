@@ -28,11 +28,13 @@ async function createTables() {
 
   await connection.execute(`CREATE TABLE atletas (
     id SERIAL PRIMARY KEY,
+    id_atleta INT NOT NULL,
     id_rodada INT NOT NULL,
     nome VARCHAR(30) NOT NULL,
     posicao CHAR(3) NOT NULL,
     status INT NOT NULL,
     custo DECIMAL(4, 2) NOT NULL,
+    pontuacao DECIMAL(4, 2),
     ultima_pontuacao DECIMAL(4, 2) NOT NULL,
     media_pontuacao DECIMAL(4, 2) NOT NULL,
     mando CHAR(1) NOT NULL,
@@ -111,6 +113,8 @@ async function seedPlayers() {
     cleanNumericString(a.name) < cleanNumericString(b.name) ? -1 : 1
   );
 
+  const connection = await createConnection();
+
   async function processFile(filename, round) {
     const roundFixturesJSON = fs.readFileSync(
       path.resolve(__dirname, "data", "fixtures", `${round}.json`),
@@ -127,13 +131,14 @@ async function seedPlayers() {
 
     for await (const record of parser) {
       const serialized = {
-        id: parseInt(get(record, "atletas.atleta_id")),
+        id_atleta: parseInt(get(record, "atletas.atleta_id")),
         id_rodada: round,
         // id_rodada: parseInt(get(record, "atletas.rodada_id")),
         nome: get(record, "atletas.apelido"),
         posicao: get(record, "atletas.posicao_id"),
         status: parseInt(get(record, "atletas.status_id")),
         custo: parseFloat(get(record, "atletas.preco_num")),
+        pontuacao: null,
         ultima_pontuacao: parseFloat(get(record, "atletas.pontos_num")),
         media_pontuacao: parseFloat(get(record, "atletas.media_num")),
         // TODO: Change two props below
@@ -161,29 +166,42 @@ async function seedPlayers() {
 
       records.push(serialized);
     }
+
     return records;
   }
 
-  const records = (
-    await Promise.all(
-      roundFiles
-        .slice(1)
-        .map(async (roundFile, index) => processFile(roundFile.name, index + 1))
-    )
-  ).reduce((acc, x) => [acc, x].flat(), []);
+  const rawRecords = await Promise.all(
+    roundFiles
+      .slice(1)
+      .map(async (roundFile, index) => processFile(roundFile.name, index + 1))
+  );
 
-  const connection = await createConnection();
+  for (let i = 1; i < rawRecords.length; i++) {
+    const prevPlayers = rawRecords[i - 1];
+    const players = rawRecords[i];
+    players.forEach((player) => {
+      const prevPlayerIndex = prevPlayers.findIndex(
+        (item) => item.id_atleta === player.id_atleta
+      );
+      if (prevPlayerIndex >= 0)
+        rawRecords[i - 1][prevPlayerIndex].pontuacao = player.ultima_pontuacao;
+    });
+  }
+
+  const records = rawRecords.reduce((acc, x) => [acc, x].flat(), []);
 
   await Promise.all(
     records.map((record) =>
       connection.execute(
-        `INSERT INTO atletas (id_rodada, nome, posicao, status, custo, ultima_pontuacao, media_pontuacao, mando, id_oponente) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        `INSERT INTO atletas (id_atleta, id_rodada, nome, posicao, status, custo, pontuacao, ultima_pontuacao, media_pontuacao, mando, id_oponente) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
+          record.id_atleta,
           record.id_rodada,
           record.nome,
           record.posicao,
           record.status,
           record.custo,
+          record.pontuacao,
           record.ultima_pontuacao,
           record.media_pontuacao,
           record.mando,
