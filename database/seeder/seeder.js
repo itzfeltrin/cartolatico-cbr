@@ -27,7 +27,7 @@ async function createTables() {
   )`);
 
   await connection.execute(`CREATE TABLE atletas (
-    id INT NOT NULL,
+    id SERIAL PRIMARY KEY,
     id_rodada INT NOT NULL,
     nome VARCHAR(30) NOT NULL,
     posicao CHAR(3) NOT NULL,
@@ -38,7 +38,6 @@ async function createTables() {
     mando CHAR(1) NOT NULL,
     id_oponente INT,
 
-    CONSTRAINT pk_atleta PRIMARY KEY (id, id_rodada),
     CONSTRAINT fk_id_oponente FOREIGN KEY (id_oponente) REFERENCES clubes(id)
   )`);
 
@@ -178,9 +177,8 @@ async function seedPlayers() {
   await Promise.all(
     records.map((record) =>
       connection.execute(
-        `INSERT INTO atletas (id, id_rodada, nome, posicao, status, custo, ultima_pontuacao, media_pontuacao, mando, id_oponente) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        `INSERT INTO atletas (id_rodada, nome, posicao, status, custo, ultima_pontuacao, media_pontuacao, mando, id_oponente) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
-          record.id,
           record.id_rodada,
           record.nome,
           record.posicao,
