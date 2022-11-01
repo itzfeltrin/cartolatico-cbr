@@ -1,32 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout">
-<head>
-    <title>Dashboard</title>
-</head>
-<body>
-<!-- Header -->
-<th:block layout:fragment="header-title">
-    Dashboard
-    <small>Painel Administrativo</small>
-</th:block>
-<!-- Breadcrumb -->
-<th:block layout:fragment="breadcrumb">
-    <li class="active"><i class="fa fa-home"></i> Home</li>
-</th:block>
-<!-- Content -->
-<th:block layout:fragment="content">
-    <!--<div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Title</h3>
-        </div>
-        <div class="box-body">
-            Start creating your amazing application!
-        </div>
-        <div class="box-footer">
-            Footer
-        </div>
-    </div>-->
-</th:block>
-</body>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorator="layout"
+>
+  <head>
+    <title>Cartolatico</title>
+  </head>
+  <body>
+    <h1>Cartolatico</h1>
+    <p>
+      Sistema para recomendacao de jogadores para escalacao no aplicativo
+      Cartola FC a partir da posicao buscada, do orcamento disponivel e da
+      equipe adversaria.
+    </p>
+    <p>Insira abaixo os valores desejados para os atributos citados.</p>
+    <h2>Clubes</h2>
+    <ul>
+      <li th:each="club: ${clubList}">
+        <span th:text="${club.nome}" />
+      </li>
+    </ul>
+    <form action="">
+      <div class="field">
+        <label for="posicao">Posicao: </label>
+        <input type="text" id="posicao" name="posicao" />
+      </div>
+      <div class="field">
+        <label for="custo">Custo: </label>
+        <input type="number" name="custo" />
+      </div>
+      <button type="submit">Buscar</button>
+    </form>
+  </body>
 </html>

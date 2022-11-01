@@ -142,7 +142,7 @@ public class CBR {
 		}
 
 		Collection<RetrievalResult> eval = NNScoringMethod.evaluateSimilarity(_caseBase.getCases(), query, simConfig);
-		eval = SelectCases.selectTopKRR(eval, 5);
+		eval = SelectCases.selectTopKRR(eval, 20);
 
 		return eval;
 	}
