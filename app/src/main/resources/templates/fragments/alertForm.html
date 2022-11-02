@@ -1,7 +1,0 @@
-<div th:if="${#fields.hasErrors('*')}" class="alert alert-danger alert-dismissible">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-    <h5 style="margin: 0;"><i class="icon fa fa-ban"></i>Alguns campos são inválidos:</h5>
-    <ul th:if="${#fields.hasErrors('*')}">
-        <li th:each="err : ${#fields.detailedErrors('*')}">Campo <strong><span th:text="${err.fieldName}"></span></strong> <span th:text="${err.message}"></span></li>
-    </ul>
-</div>
