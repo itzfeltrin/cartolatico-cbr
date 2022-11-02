@@ -22,13 +22,13 @@ public class CartolaGamerApplication {
 //		gameState.setId(101997);
 //		gameState.setId_rodada(30);
 //		gameState.setNome("Braian Romero");
-		gameState.setPosicao("ata");
+		gameState.setPosicao("lat");
 		gameState.setStatus(7);
-		gameState.setCusto(4.99);
-//		gameState.setUltima_pontuacao(2.00);
-//		gameState.setMedia_pontuacao(1.32);
+		gameState.setCusto(9.90);
+		gameState.setUltima_pontuacao(10.60);
+//		gameState.setMedia_pontuacao(2.00);
 		gameState.setMando("F");
-		gameState.setId_oponente(262);
+		gameState.setId_oponente(276);
 		
 		try {
 			RetornoModelo result = realizaConsultas.retornaConsulta(gameState);

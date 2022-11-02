@@ -15,20 +15,50 @@
       equipe adversaria.
     </p>
     <p>Insira abaixo os valores desejados para os atributos citados.</p>
-    <h2>Clubes</h2>
+    <!-- <h2>Clubes</h2>
     <ul>
       <li th:each="club: ${clubList}">
         <span th:text="${club.nome}" />
       </li>
-    </ul>
-    <form action="">
+    </ul> -->
+    <form action="#" th:action="@{/busca}" th:object="${query}" method="post">
       <div class="field">
         <label for="posicao">Posicao: </label>
-        <input type="text" id="posicao" name="posicao" />
+        <select name="posicao" id="posicao" th:field="*{posicao}">
+          <option value="TEC">Tecnico</option>
+          <option value="GOL">Goleiro</option>
+          <option value="ZAG">Zagueiro</option>
+          <option value="LAT">Lateral</option>
+          <option value="MEI">Meia</option>
+          <option value="ATA">Atacante</option>
+        </select>
       </div>
       <div class="field">
         <label for="custo">Custo: </label>
-        <input type="number" name="custo" />
+        <input
+          type="number"
+          id="custo"
+          name="custo"
+          th:field="*{custo}"
+          step="0.1"
+        />
+      </div>
+      <div class="field">
+        <label for="mando">Mando: </label>
+        <select name="mando" id="mando" th:field="*{mando}">
+          <option value="C">Casa</option>
+          <option value="F">Fora</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="id_oponente">Oponente: </label>
+        <select name="id_oponente" id="id_oponente" th:field="*{id_oponente}">
+          <option
+            th:each="club : ${clubs}"
+            th:value="${club.id}"
+            th:text="${club.nome}"
+          />
+        </select>
       </div>
       <button type="submit">Buscar</button>
     </form>

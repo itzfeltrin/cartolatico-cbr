@@ -8,14 +8,23 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cartola.gamer.cbr.RealizaConsultas;
+import cartola.gamer.cbr.descriptions.CaseBaseDescription;
 import cartola.gamer.cbr.descriptions.Clube;
+import cartola.gamer.cbr.modelo.CasosRetornadosModelo;
+import cartola.gamer.cbr.modelo.RetornoModelo;
+import cartola.gamer.model.SearchQuery;
 import cartola.gamer.web.utils.HibernateUtil;
+import es.ucm.fdi.gaia.jcolibri.exception.ExecutionException;
 
 @Controller
 @RequestMapping("/")
 public class IndexController{
+    
     @GetMapping
     public String index(Model model){
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -23,10 +32,37 @@ public class IndexController{
 
         session.beginTransaction();
         Query<cartola.gamer.cbr.descriptions.Clube> query = session.createQuery("from Clube", Clube.class);
-        List<Clube> clubList = query.list();    
+        List<Clube> clubs = query.list();    
         
-        model.addAttribute("clubList", clubList);
+        model.addAttribute("clubs", clubs);
+        model.addAttribute("query", new SearchQuery());
 
-        return "/index";
+        return "index";
+    }
+
+    @PostMapping("/busca")
+    public String submitQuery(@ModelAttribute SearchQuery query, Model model) {
+        model.addAttribute("query", query);
+
+        RealizaConsultas realizaConsultas = new RealizaConsultas();
+        
+        CaseBaseDescription gameState = new CaseBaseDescription();
+        gameState.setPosicao(query.getPosicao().toLowerCase());
+        gameState.setCusto(query.getCusto());
+        gameState.setMando(query.getMando());
+        gameState.setId_oponente(query.getId_oponente());
+        gameState.setStatus(7);
+
+        try {
+			RetornoModelo result = realizaConsultas.retornaConsulta(gameState);
+			List<CasosRetornadosModelo> cases = result.getListaCasosRetornados();
+
+			model.addAttribute("cases", cases);
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        return "resultado";
     }
 }
