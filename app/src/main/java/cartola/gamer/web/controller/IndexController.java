@@ -23,18 +23,25 @@ import es.ucm.fdi.gaia.jcolibri.exception.ExecutionException;
 
 @Controller
 @RequestMapping("/")
-public class IndexController{
-    
-    @GetMapping
-    public String index(Model model){
+public class IndexController {
+
+    private List<Clube> getClubes() {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
 
         session.beginTransaction();
         Query<cartola.gamer.cbr.descriptions.Clube> query = session.createQuery("from Clube", Clube.class);
-        List<Clube> clubs = query.list();    
-        
-        model.addAttribute("clubs", clubs);
+        List<Clube> clubes = query.list();
+        session.close();
+
+        return clubes;
+    }
+
+    @GetMapping
+    public String index(Model model) {
+        List<Clube> clubes = this.getClubes();
+
+        model.addAttribute("clubes", clubes);
         model.addAttribute("query", new SearchQuery());
 
         return "index";
@@ -45,7 +52,7 @@ public class IndexController{
         model.addAttribute("query", query);
 
         RealizaConsultas realizaConsultas = new RealizaConsultas();
-        
+
         CaseBaseDescription gameState = new CaseBaseDescription();
         gameState.setPosicao(query.getPosicao().toLowerCase());
         gameState.setCusto(query.getCusto());
@@ -54,14 +61,22 @@ public class IndexController{
         gameState.setStatus(7);
 
         try {
-			RetornoModelo result = realizaConsultas.retornaConsulta(gameState);
-			List<CasosRetornadosModelo> cases = result.getListaCasosRetornados();
+            RetornoModelo result = realizaConsultas.retornaConsulta(gameState);
+            List<CasosRetornadosModelo> cases = result.getListaCasosRetornados();
 
-			model.addAttribute("cases", cases);
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+            for (CasosRetornadosModelo retrievedCase : cases) {
+                System.out.println(retrievedCase.getSimilaridadeDoCasoComAconsulta());
+            }
+            System.out.println();
+
+            model.addAttribute("cases", cases);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        List<Clube> clubes = this.getClubes();
+
+        model.addAttribute("clubes", clubes);
 
         return "resultado";
     }

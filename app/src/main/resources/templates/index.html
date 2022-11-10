@@ -54,9 +54,9 @@
         <label for="id_oponente">Oponente: </label>
         <select name="id_oponente" id="id_oponente" th:field="*{id_oponente}">
           <option
-            th:each="club : ${clubs}"
-            th:value="${club.id}"
-            th:text="${club.nome}"
+            th:each="clube : ${clubes}"
+            th:value="${clube.id}"
+            th:text="${clube.nome}"
           />
         </select>
       </div>
