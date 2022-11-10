@@ -7,6 +7,7 @@
   <head>
     <title>Cartolatico</title>
   </head>
+  <script src="https://cdn.tailwindcss.com"></script>
   <body>
     <h1>Cartolatico</h1>
     <h2>Resultado da consulta</h2>
@@ -19,8 +20,8 @@
       <p th:text="*{mando}" />
     </div>
     <hr />
-    <ol>
-      <li th:each="case : ${cases}">
+    <ol class="grid grid-cols-4 gap-4 p-4">
+      <li th:each="case : ${cases}" class="rounded shadow-md p-4">
         <div th:replace="fragments/retrieved-case :: retrieved-case"></div>
       </li>
     </ol>

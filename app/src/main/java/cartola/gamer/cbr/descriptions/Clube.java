@@ -1,16 +1,16 @@
 package cartola.gamer.cbr.descriptions;
 
 public class Clube {
-	private long id;
+	private int id;
 	private String nome;
 	private String abreviacao;
 	private String nome_fantasia;
 
-	public long getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -37,6 +37,5 @@ public class Clube {
 	public void setNome_fantasia(String nome_fantasia) {
 		this.nome_fantasia = nome_fantasia;
 	}
-	
-	
+
 }

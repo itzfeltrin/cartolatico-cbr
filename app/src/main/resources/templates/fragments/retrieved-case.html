@@ -1,10 +1,9 @@
-<div
-  th:fragment="retrieved-case"
-  th:with="retrievedCase=${case.getCaseRetrieved()}"
->
-  <h3>[[${retrievedCase.getNome()}]]</h3>
-  <small>Desempenho na [[${retrievedCase.getId_rodada()}]]ª rodada</small>
-  <p>Posicao: [[${retrievedCase.getPosicao().toUpperCase()}]]</p>
+<div th:fragment="retrieved-case" th:with="caso=${case.getCaseRetrieved()}">
   <p>Similaridade: [[${case.getPorcentagemDeSimilaridade()}]]</p>
-  <p>Equipe adversaria: [[${retrievedCase}]]</p>
+  <h3>[[${caso.getNome()}]]</h3>
+  <small>Desempenho na [[${caso.getId_rodada()}]]ª rodada</small>
+  <p>Posicao: [[${caso.getPosicao().toUpperCase()}]]</p>
+  <p>Custo: [[${caso.getCusto()}]]</p>
+  <p>Pontuacao: [[${caso.getPontuacao()}]]</p>
+  <p>Equipe adversaria: [[${caso.getId_oponente()}]]</p>
 </div>
