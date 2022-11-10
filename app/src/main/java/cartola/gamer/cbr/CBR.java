@@ -1,10 +1,14 @@
 package cartola.gamer.cbr;
 
 import java.util.Collection;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import cartola.gamer.cbr.descriptions.CaseBaseDescription;
 import es.ucm.fdi.gaia.jcolibri.casebase.CachedLinealCaseBase;
 import es.ucm.fdi.gaia.jcolibri.cbrcore.Attribute;
+import es.ucm.fdi.gaia.jcolibri.cbrcore.CBRCase;
 import es.ucm.fdi.gaia.jcolibri.cbrcore.CBRCaseBase;
 import es.ucm.fdi.gaia.jcolibri.cbrcore.CBRQuery;
 import es.ucm.fdi.gaia.jcolibri.cbrcore.Connector;
@@ -17,8 +21,8 @@ import es.ucm.fdi.gaia.jcolibri.method.retrieve.NNretrieval.NNScoringMethod;
 import es.ucm.fdi.gaia.jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
 import es.ucm.fdi.gaia.jcolibri.method.retrieve.NNretrieval.similarity.local.Equal;
 import es.ucm.fdi.gaia.jcolibri.method.retrieve.NNretrieval.similarity.local.Interval;
-import es.ucm.fdi.gaia.jcolibri.method.retrieve.NNretrieval.similarity.local.Threshold;
 import es.ucm.fdi.gaia.jcolibri.method.retrieve.selection.SelectCases;
+import es.ucm.fdi.gaia.jcolibri.util.FileIO;
 
 public class CBR {
 
@@ -28,7 +32,7 @@ public class CBR {
 		try {
 			System.out.println("Iniciando conexão es.ucm.fdi.gaia.jcolibri...");
 			_connector = new DataBaseConnector();
-			_connector.initFromXMLfile(es.ucm.fdi.gaia.jcolibri.util.FileIO
+			_connector.initFromXMLfile(FileIO
 					.findFile("main/java/cartola/gamer/cbr/hibernate/databaseconfig.xml"));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -141,7 +145,12 @@ public class CBR {
 			System.out.println("SimConfig id_oponente: " + simConfig.getLocalSimilFunction(id_oponente));
 		}
 
-		Collection<RetrievalResult> eval = NNScoringMethod.evaluateSimilarity(_caseBase.getCases(), query, simConfig);
+		Stream<CBRCase> cases = _caseBase.getCases().stream();
+		Predicate<CBRCase> caseFilter = retrievedCase -> ((CaseBaseDescription) retrievedCase.getDescription())
+				.getPosicao().equals(desc.getPosicao());
+		cases = cases.filter(caseFilter);
+		Collection<RetrievalResult> eval = NNScoringMethod.evaluateSimilarity(cases.collect(Collectors.toList()), query,
+				simConfig);
 		eval = SelectCases.selectTopKRR(eval, 20);
 
 		return eval;
