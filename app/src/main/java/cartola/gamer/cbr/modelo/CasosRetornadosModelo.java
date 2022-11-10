@@ -19,6 +19,10 @@ public class CasosRetornadosModelo {
 		return this.similaridadeDoCasoComAconsulta;
 	}
 
+	public String getPorcentagemDeSimilaridade() {
+		return String.format("%.2f", this.getSimilaridadeDoCasoComAconsulta() * 100) + "%";
+	}
+
 	public void setSimilaridadeDoCasoComAconsulta(Double similaridadeDoCasoComAconsulta) {
 		this.similaridadeDoCasoComAconsulta = similaridadeDoCasoComAconsulta;
 	}

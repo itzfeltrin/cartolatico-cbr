@@ -21,7 +21,7 @@
     <hr />
     <ol>
       <li th:each="case : ${cases}">
-        <span th:text="${case.getCaseRetrieved().toString()}" />
+        <div th:replace="fragments/retrieved-case :: retrieved-case"></div>
       </li>
     </ol>
   </body>
