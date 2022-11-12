@@ -1,5 +1,6 @@
 package cartola.gamer.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -15,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import cartola.gamer.cbr.RealizaConsultas;
 import cartola.gamer.cbr.descriptions.CaseBaseDescription;
 import cartola.gamer.cbr.descriptions.Clube;
-import cartola.gamer.cbr.modelo.CasosRetornadosModelo;
-import cartola.gamer.cbr.modelo.RetornoModelo;
+import cartola.gamer.cbr.modelo.RetrievedCase;
+import cartola.gamer.cbr.modelo.ResultCase;
 import cartola.gamer.model.SearchQuery;
 import cartola.gamer.web.utils.HibernateUtil;
 import es.ucm.fdi.gaia.jcolibri.exception.ExecutionException;
@@ -58,18 +59,13 @@ public class IndexController {
         gameState.setCusto(query.getCusto());
         gameState.setMando(query.getMando());
         gameState.setId_oponente(query.getId_oponente());
+        gameState.setId_rodada(30);
         gameState.setStatus(7);
 
         try {
-            RetornoModelo result = realizaConsultas.retornaConsulta(gameState);
-            List<CasosRetornadosModelo> cases = result.getListaCasosRetornados();
+            List<ResultCase> resultCases = realizaConsultas.retornaConsulta(gameState);
 
-            for (CasosRetornadosModelo retrievedCase : cases) {
-                System.out.println(retrievedCase.getSimilaridadeDoCasoComAconsulta());
-            }
-            System.out.println();
-
-            model.addAttribute("cases", cases);
+            model.addAttribute("resultCases", resultCases);
         } catch (ExecutionException e) {
             e.printStackTrace();
         }

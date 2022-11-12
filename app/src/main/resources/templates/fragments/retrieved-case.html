@@ -1,7 +1,5 @@
-<div th:fragment="retrieved-case" th:with="caso=${case.getCaseRetrieved()}">
-  <p>Similaridade: [[${case.getPorcentagemDeSimilaridade()}]]</p>
+<div th:fragment="retrieved-case">
   <h3>[[${caso.getNome()}]]</h3>
-  <small>Desempenho na [[${caso.getId_rodada()}]]ª rodada</small>
   <p>Posicao: [[${caso.getPosicao().toUpperCase()}]]</p>
   <p>Custo: [[${caso.getCusto()}]]</p>
   <p>Pontuacao: [[${caso.getPontuacao()}]]</p>

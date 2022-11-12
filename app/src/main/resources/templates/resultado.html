@@ -21,8 +21,21 @@
     </div>
     <hr />
     <ol class="grid grid-cols-4 gap-4 p-4">
-      <li th:each="case : ${cases}" class="rounded shadow-md p-4">
+      <li
+        th:each="resultCase : ${resultCases}"
+        th:with="caso=${resultCase.getDescription()}"
+        class="rounded shadow-md p-4"
+      >
         <div th:replace="fragments/retrieved-case :: retrieved-case"></div>
+        <!-- <ul>
+          <li
+            th:each="case : ${casoRetornado.getListaCasosRetornados}"
+            class="rounded shadow-md p-4"
+          >
+            <div th:replace="fragments/retrieved-case :: retrieved-case"></div>
+          </li>
+        </ul> -->
+        <p>[[${resultCase.getAverageScore()}]]</p>
       </li>
     </ol>
   </body>

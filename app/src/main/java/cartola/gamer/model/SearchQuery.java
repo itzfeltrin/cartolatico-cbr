@@ -5,7 +5,7 @@ public class SearchQuery {
 	private double custo;
 	private String mando;
 	private int id_oponente;
-	
+	private int id_rodada;
 
 	public String getPosicao() {
 		return this.posicao;
@@ -38,4 +38,13 @@ public class SearchQuery {
 	public void setId_oponente(int id_oponente) {
 		this.id_oponente = id_oponente;
 	}
+
+	public int getId_rodada() {
+		return this.id_rodada;
+	}
+
+	public void setId_rodada(int id_rodada) {
+		this.id_rodada = id_rodada;
+	}
+
 }

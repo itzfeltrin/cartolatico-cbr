@@ -2,10 +2,9 @@ package cartola.gamer.cbr.modelo;
 
 import cartola.gamer.cbr.descriptions.CaseBaseDescription;
 
-public class CasosRetornadosModelo {
+public class RetrievedCase {
 	CaseBaseDescription caseRetrieved;
 	Double similaridadeDoCasoComAconsulta;
-	Double custo;
 
 	public CaseBaseDescription getCaseRetrieved() {
 		return this.caseRetrieved;
@@ -26,13 +25,4 @@ public class CasosRetornadosModelo {
 	public void setSimilaridadeDoCasoComAconsulta(Double similaridadeDoCasoComAconsulta) {
 		this.similaridadeDoCasoComAconsulta = similaridadeDoCasoComAconsulta;
 	}
-
-	public Double getCusto() {
-		return this.custo;
-	}
-
-	public void setCusto(Double custo) {
-		this.custo = custo;
-	}
-
 }
