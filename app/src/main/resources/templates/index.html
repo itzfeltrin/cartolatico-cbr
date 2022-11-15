@@ -45,19 +45,12 @@
         />
       </div>
       <div class="field">
-        <label for="mando">Mando: </label>
-        <select name="mando" id="mando" th:field="*{mando}">
-          <option value="C">Casa</option>
-          <option value="F">Fora</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="id_oponente">Oponente: </label>
-        <select name="id_oponente" id="id_oponente" th:field="*{id_oponente}">
+        <label for="id_rodada">Rodada: </label>
+        <select name="id_rodada" id="id_rodada" th:field="*{id_rodada}">
           <option
-            th:each="clube : ${clubes}"
-            th:value="${clube.id}"
-            th:text="${clube.nome}"
+            th:each="rodada: ${rodadas}"
+            th:value="${rodada}"
+            th:text="${rodada}"
           />
         </select>
       </div>

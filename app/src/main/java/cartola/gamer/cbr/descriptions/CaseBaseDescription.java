@@ -3,9 +3,7 @@ package cartola.gamer.cbr.descriptions;
 import es.ucm.fdi.gaia.jcolibri.cbrcore.Attribute;
 import es.ucm.fdi.gaia.jcolibri.cbrcore.CaseComponent;
 
-
-
-public class CaseBaseDescription implements CaseComponent {	
+public class CaseBaseDescription implements CaseComponent {
 	private Integer id;
 	private Integer id_atleta;
 	private Integer id_rodada;
@@ -18,7 +16,7 @@ public class CaseBaseDescription implements CaseComponent {
 	private Double media_pontuacao;
 	private String mando;
 	private Integer id_oponente;
-	
+
 	public Integer getId() {
 		return this.id;
 	}
@@ -26,7 +24,7 @@ public class CaseBaseDescription implements CaseComponent {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public Integer getId_atleta() {
 		return this.id_atleta;
 	}
@@ -74,7 +72,7 @@ public class CaseBaseDescription implements CaseComponent {
 	public void setCusto(Double custo) {
 		this.custo = custo;
 	}
-	
+
 	public Double getPontuacao() {
 		return this.pontuacao;
 	}
@@ -116,15 +114,17 @@ public class CaseBaseDescription implements CaseComponent {
 	}
 
 	@Override
-    public Attribute getIdAttribute() {
-        return new Attribute("id", this.getClass());
-    }
+	public Attribute getIdAttribute() {
+		return new Attribute("id", this.getClass());
+	}
 
 	@Override
 	public String toString() {
-		return "CaseBaseDescription{" + "id=" + this.id + ", id_atleta=" + this.id_atleta + ", id_rodada=" + this.id_rodada + ", nome=" + this.nome
+		return "CaseBaseDescription{" + "id=" + this.id + ", id_atleta=" + this.id_atleta + ", id_rodada="
+				+ this.id_rodada + ", nome=" + this.nome
 				+ ", posicao='" + this.posicao + '\'' + ", status='" + this.status + '\'' + ", custo='" + this.custo
-				+ '\'' + ", pontuacao=" + this.pontuacao + ", ultima_pontuacao='" + this.ultima_pontuacao + '\'' + ", media_pontuacao='"
+				+ '\'' + ", pontuacao=" + this.pontuacao + ", ultima_pontuacao='" + this.ultima_pontuacao + '\''
+				+ ", media_pontuacao='"
 				+ this.media_pontuacao + '\'' + ", mando='" + this.mando + '\'' + ", id_oponente='" + this.id_oponente
 				+ '\'' + '}';
 	}

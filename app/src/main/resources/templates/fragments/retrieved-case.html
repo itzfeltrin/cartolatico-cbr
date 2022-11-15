@@ -1,7 +1,19 @@
-<div th:fragment="retrieved-case">
-  <h3>[[${caso.getNome()}]]</h3>
-  <p>Posicao: [[${caso.getPosicao().toUpperCase()}]]</p>
-  <p>Custo: [[${caso.getCusto()}]]</p>
-  <p>Pontuacao: [[${caso.getPontuacao()}]]</p>
-  <p>Equipe adversaria: [[${caso.getId_oponente()}]]</p>
+<div th:fragment="retrieved-case" class="grid gap gap-2">
+  <h3
+    class="text-xl font-medium text-stone-700 border-l-4 border-amber-500 pl-2 mb-2 rounded-sm"
+  >
+    [[${caso.getNome()}]]
+  </h3>
+  <p>
+    &#8594; Posicao: <strong>[[${caso.getPosicao().toUpperCase()}]]</strong>
+  </p>
+  <p>&#8594; Custo: <strong>[[${caso.getCusto()}]]</strong></p>
+  <!-- <p>&#8594; Pontuacao: <strong>[[${caso.getPontuacao()}]]</strong></p> -->
+  <p>
+    &#8594; Equipe adversaria: <strong>[[${caso.getId_oponente()}]]</strong>
+  </p>
+  <p>
+    &#8594; Media normalizada da pontuacao dos 20 casos mais similares:
+    <strong>[[${resultCase.getAverageScore()}]]</strong>
+  </p>
 </div>

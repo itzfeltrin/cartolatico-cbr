@@ -2,6 +2,7 @@ package cartola.gamer.web.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -42,8 +43,11 @@ public class IndexController {
     public String index(Model model) {
         List<Clube> clubes = this.getClubes();
 
-        model.addAttribute("clubes", clubes);
+        int[] rodadas = IntStream.rangeClosed(1, 30).toArray();
+
         model.addAttribute("query", new SearchQuery());
+        model.addAttribute("clubes", clubes);
+        model.addAttribute("rodadas", rodadas);
 
         return "index";
     }
@@ -57,10 +61,12 @@ public class IndexController {
         CaseBaseDescription gameState = new CaseBaseDescription();
         gameState.setPosicao(query.getPosicao().toLowerCase());
         gameState.setCusto(query.getCusto());
-        gameState.setMando(query.getMando());
-        gameState.setId_oponente(query.getId_oponente());
         gameState.setId_rodada(30);
-        gameState.setStatus(7);
+        if (query.getSomente_provaveis()) {
+            gameState.setStatus(7);
+        } else {
+            gameState.setStatus(null);
+        }
 
         try {
             List<ResultCase> resultCases = realizaConsultas.retornaConsulta(gameState);

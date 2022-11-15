@@ -9,25 +9,25 @@
   </head>
   <script src="https://cdn.tailwindcss.com"></script>
   <body>
-    <h1>Cartolatico</h1>
-    <h2>Resultado da consulta</h2>
-    <a href="/">Realizar nova consulta</a>
-    <p>Parametros informados:</p>
-    <div th:object="${query}">
-      <p th:text="*{posicao}" />
-      <p th:text="*{custo}" />
-      <p th:text="*{id_oponente}" />
-      <p th:text="*{mando}" />
-    </div>
-    <hr />
-    <ol class="grid grid-cols-4 gap-4 p-4">
-      <li
-        th:each="resultCase : ${resultCases}"
-        th:with="caso=${resultCase.getDescription()}"
-        class="rounded shadow-md p-4"
-      >
-        <div th:replace="fragments/retrieved-case :: retrieved-case"></div>
-        <!-- <ul>
+    <main class="container mx-auto m-4 p-4 rounded-lg grid grid-cols-1 gap gap-4 bg-gray-200">
+      <h1 class="text-4xl font-bold">Cartolatico</h1>
+      <h2 class="text-2xl">Resultado da consulta</h2>
+      <a href="/" class="text-blue-500">Realizar nova consulta</a>
+      <p class="text-xl">Parametros informados:</p>
+        <p>Posicao: [[${query.getPosicao()}]]</p>
+        <p>Custo: [[${query.getCusto()}]]</p>
+        <p>Rodada: [[${query.getId_rodada()}]]</p>
+        <!-- <p th:text="*{mando}" /> -->
+      </div>
+      <hr />
+      <ol class="grid grid-cols-4 gap-4">
+        <li
+          th:each="resultCase : ${resultCases}"
+          th:with="caso=${resultCase.getDescription()}"
+          class="rounded shadow-md p-4 bg-white"
+        >
+          <div th:replace="fragments/retrieved-case :: retrieved-case"></div>
+          <!-- <ul>
           <li
             th:each="case : ${casoRetornado.getListaCasosRetornados}"
             class="rounded shadow-md p-4"
@@ -35,8 +35,8 @@
             <div th:replace="fragments/retrieved-case :: retrieved-case"></div>
           </li>
         </ul> -->
-        <p>[[${resultCase.getAverageScore()}]]</p>
-      </li>
-    </ol>
+        </li>
+      </ol>
+    </main>
   </body>
 </html>
