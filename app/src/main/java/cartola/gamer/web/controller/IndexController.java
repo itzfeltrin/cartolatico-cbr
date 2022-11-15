@@ -1,6 +1,6 @@
 package cartola.gamer.web.controller;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import cartola.gamer.cbr.RealizaConsultas;
 import cartola.gamer.cbr.descriptions.CaseBaseDescription;
 import cartola.gamer.cbr.descriptions.Clube;
-import cartola.gamer.cbr.modelo.RetrievedCase;
 import cartola.gamer.cbr.modelo.ResultCase;
 import cartola.gamer.model.SearchQuery;
 import cartola.gamer.web.utils.HibernateUtil;
@@ -70,6 +69,8 @@ public class IndexController {
 
         try {
             List<ResultCase> resultCases = realizaConsultas.retornaConsulta(gameState);
+            Collections.sort(resultCases); // retorna do menor pro maior
+            Collections.reverse(resultCases);
 
             model.addAttribute("resultCases", resultCases);
         } catch (ExecutionException e) {

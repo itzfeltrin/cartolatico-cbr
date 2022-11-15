@@ -4,7 +4,7 @@ import java.util.List;
 
 import cartola.gamer.cbr.descriptions.CaseBaseDescription;
 
-public class ResultCase {
+public class ResultCase implements Comparable<ResultCase> {
 	private CaseBaseDescription description;
 	private List<RetrievedCase> retrievedCaseList;
 
@@ -25,7 +25,7 @@ public class ResultCase {
 		this.retrievedCaseList = retrievedCaseList;
 	}
 
-	public String getAverageScore() {
+	public Double getDoubleAverageScore() {
 		Double overallScore = 0.0;
 		for (RetrievedCase retrievedCase : this.retrievedCaseList) {
 			Double retrievedCaseScore = retrievedCase.getCaseRetrieved().getPontuacao();
@@ -36,6 +36,23 @@ public class ResultCase {
 			}
 		}
 		Double averageScore = overallScore / this.retrievedCaseList.size();
-		return String.format(String.format("%,.2f", averageScore));
+		return averageScore;
+	}
+
+	public String getAverageScore() {
+		Double averageScore = this.getDoubleAverageScore();
+		return String.format("%,.2f", averageScore);
+	}
+
+	public String getAverageScoreByCost() {
+		Double averageScore = this.getDoubleAverageScore();
+		Double cost = this.getDescription().getCusto();
+		Double averageScoreByCost = averageScore / cost;
+		return String.format("%,.2f", averageScoreByCost);
+	}
+
+	@Override
+	public int compareTo(ResultCase r) {
+		return this.getAverageScore().compareTo(r.getAverageScore());
 	}
 }

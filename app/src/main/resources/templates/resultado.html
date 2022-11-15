@@ -9,15 +9,17 @@
   </head>
   <script src="https://cdn.tailwindcss.com"></script>
   <body>
-    <main class="container mx-auto m-4 p-4 rounded-lg grid grid-cols-1 gap gap-4 bg-gray-200">
+    <main
+      class="container mx-auto m-4 p-4 rounded-lg grid grid-cols-1 gap gap-4 bg-gray-200"
+    >
       <h1 class="text-4xl font-bold">Cartolatico</h1>
       <h2 class="text-2xl">Resultado da consulta</h2>
       <a href="/" class="text-blue-500">Realizar nova consulta</a>
       <p class="text-xl">Parametros informados:</p>
-        <p>Posicao: [[${query.getPosicao()}]]</p>
-        <p>Custo: [[${query.getCusto()}]]</p>
-        <p>Rodada: [[${query.getId_rodada()}]]</p>
-        <!-- <p th:text="*{mando}" /> -->
+      <div class="grid gap gap-2">
+        <p>&#8594; Posicao: <strong>[[${query.getPosicao()}]]</strong></p>
+        <p>&#8594; Custo: <strong>[[${query.getCusto()}]]</strong></p>
+        <p>&#8594; Rodada: <strong>[[${query.getId_rodada()}]]</strong></p>
       </div>
       <hr />
       <ol class="grid grid-cols-4 gap-4">
