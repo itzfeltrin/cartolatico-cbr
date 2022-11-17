@@ -60,7 +60,7 @@ public class IndexController {
         CaseBaseDescription gameState = new CaseBaseDescription();
         gameState.setPosicao(query.getPosicao().toLowerCase());
         gameState.setCusto(query.getCusto());
-        gameState.setId_rodada(30);
+        gameState.setId_rodada(query.getId_rodada());
         if (query.getSomente_provaveis()) {
             gameState.setStatus(7);
         } else {

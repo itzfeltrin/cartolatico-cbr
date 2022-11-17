@@ -51,6 +51,12 @@ public class ResultCase implements Comparable<ResultCase> {
 		return String.format("%,.2f", averageScoreByCost);
 	}
 
+	public String getScoreByCost() {
+		Double score = this.getDescription().getPontuacao();
+		Double cost = this.getDescription().getCusto();
+		return String.format("%,.2f", score / cost);
+	}
+
 	@Override
 	public int compareTo(ResultCase r) {
 		return this.getAverageScore().compareTo(r.getAverageScore());

@@ -8,7 +8,6 @@
     &#8594; Posicao: <strong>[[${caso.getPosicao().toUpperCase()}]]</strong>
   </p>
   <p>&#8594; Custo: <strong>[[${caso.getCusto()}]]</strong></p>
-  <!-- <p>&#8594; Pontuacao: <strong>[[${caso.getPontuacao()}]]</strong></p> -->
   <p>
     &#8594; Equipe adversaria: <strong>[[${caso.getId_oponente()}]]</strong>
   </p>
@@ -20,4 +19,11 @@
     &#8594; Potencial de ponto por cartoleta:
     <strong>[[${resultCase.getAverageScoreByCost()}]]</strong>
   </p>
+  <div th:if="${caso.getPontuacao() != null}" class="mt-2">
+    <p>&#8594; Pontuacao obtida: <strong>[[${caso.getPontuacao()}]]</strong></p>
+    <p>
+      &#8594; Pontuacao obtida por cartoleta:
+      <strong>[[${resultCase.getScoreByCost()}]]</strong>
+    </p>
+  </div>
 </div>
