@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cartola.gamer.cbr.RealizaConsultas;
+import cartola.gamer.cbr.ResultWriter;
 import cartola.gamer.cbr.descriptions.CaseBaseDescription;
 import cartola.gamer.cbr.descriptions.Clube;
 import cartola.gamer.cbr.modelo.ResultCase;
@@ -71,6 +72,8 @@ public class IndexController {
             List<ResultCase> resultCases = realizaConsultas.retornaConsulta(gameState);
             Collections.sort(resultCases); // retorna do menor pro maior
             Collections.reverse(resultCases);
+
+            ResultWriter.writeResult(query, resultCases);
 
             model.addAttribute("resultCases", resultCases);
         } catch (ExecutionException e) {

@@ -89,7 +89,8 @@ public class CBR {
 			CaseBaseDescription retrievedCaseDesc = (CaseBaseDescription) retrievedCase.getDescription();
 			return retrievedCaseDesc.getId_rodada().equals(desc.getId_rodada())
 					&& retrievedCaseDesc.getPosicao().equals(desc.getPosicao())
-					&& retrievedCaseDesc.getStatus() == 7;
+					&& retrievedCaseDesc.getStatus() == 7 && retrievedCaseDesc.getCusto() <= desc.getCusto() + 2.0
+					&& retrievedCaseDesc.getCusto() >= desc.getCusto() - 2.0;
 		};
 		Predicate<CBRCase> previousRoundsFilter = retrievedCase -> {
 			CaseBaseDescription retrievedCaseDesc = (CaseBaseDescription) retrievedCase.getDescription();
