@@ -50,26 +50,26 @@ function cleanNumericString(numericStr) {
   return Number(numericStr.replace(/\D/g, ""));
 }
 
-// const fetch = (...args) =>
-//   import("node-fetch").then(({ default: fetch }) => fetch(...args));
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
-// async function seedFixtures() {
-//   const fs = require("fs");
-//   const path = require("path");
+async function seedFixtures() {
+  const fs = require("fs");
+  const path = require("path");
 
-//   new Array(30).fill(Number).forEach(async (_, idx) => {
-//     const response = await fetch(
-//       `https://api.cartola.globo.com/partidas/${idx + 1}`
-//     );
+  new Array(38).fill(Number).forEach(async (_, idx) => {
+    const response = await fetch(
+      `https://api.cartola.globo.com/partidas/${idx + 1}`
+    );
 
-//     const data = await response.json();
+    const data = await response.json();
 
-//     fs.writeFileSync(
-//       path.resolve(__dirname, "data", "fixtures", `${idx + 1}.json`),
-//       JSON.stringify(data)
-//     );
-//   });
-// }
+    fs.writeFileSync(
+      path.resolve(__dirname, "data", "fixtures", `${idx + 1}.json`),
+      JSON.stringify(data)
+    );
+  });
+}
 
 async function seedTeams() {
   const fs = require("fs");
