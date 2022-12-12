@@ -6,6 +6,7 @@ import cartola.gamer.cbr.descriptions.CaseBaseDescription;
 
 public class ResultCase implements Comparable<ResultCase> {
 	private CaseBaseDescription description;
+	private Integer rank;
 	private List<RetrievedCase> retrievedCaseList;
 
 	public ResultCase(CaseBaseDescription description, List<RetrievedCase> retrievedCaseList) {
@@ -19,6 +20,14 @@ public class ResultCase implements Comparable<ResultCase> {
 
 	public List<RetrievedCase> getRetrievedCaseList() {
 		return this.retrievedCaseList;
+	}
+
+	public Integer getRank() {
+		return this.rank;
+	}
+
+	public void setRank(Integer rank) {
+		this.rank = rank;
 	}
 
 	public void setRetrievedCaseList(List<RetrievedCase> retrievedCaseList) {

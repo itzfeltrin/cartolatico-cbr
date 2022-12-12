@@ -2,6 +2,8 @@ package cartola.gamer.cbr;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -57,6 +59,20 @@ public class RealizaConsultas {
 			ResultCase retorno = new ResultCase(comparedCase.getDescription(), retrievedCaseList);
 
 			result.add(retorno);
+		}
+
+		Comparator<ResultCase> sortByScore = new Comparator<ResultCase>() {
+			public int compare(ResultCase a, ResultCase b) {
+				return a.getDescription().getPontuacao() > b.getDescription().getPontuacao() ? -1 : 1;
+			}
+		};
+
+		List<ResultCase> clonedResult = new ArrayList<ResultCase>(result);
+		Collections.sort(clonedResult, sortByScore);
+
+		for (ResultCase resultCase : result) {
+			int clonedIndex = clonedResult.indexOf(resultCase);
+			resultCase.setRank(clonedIndex + 1);
 		}
 
 		return result;

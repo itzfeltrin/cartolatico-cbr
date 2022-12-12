@@ -19,7 +19,7 @@
     &#8594; Potencial de ponto por cartoleta:
     <strong>[[${resultCase.getAverageScoreByCost()}]]</strong>
   </p>
-  <div th:if="${caso.getPontuacao() != null}" class="mt-2">
+  <div th:if="${caso.getPontuacao() != null}" class="grid gap gap-2">
     <p>&#8594; Pontuacao obtida: <strong>[[${caso.getPontuacao()}]]</strong></p>
     <p>
       &#8594; Pontuacao obtida por cartoleta:
@@ -28,6 +28,10 @@
     <p>
       &#8594; Diferenca:
       <strong>[[${resultCase.getDifference()}]]</strong>
+    </p>
+    <p>
+      &#8594; Rank:
+      <strong>[[${resultCase.getRank()}]]</strong>
     </p>
   </div>
 </div>

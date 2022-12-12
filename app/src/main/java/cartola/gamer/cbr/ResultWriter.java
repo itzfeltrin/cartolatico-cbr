@@ -26,7 +26,8 @@ public class ResultWriter {
 					CSVWriter.DEFAULT_ESCAPE_CHARACTER,
 					CSVWriter.DEFAULT_LINE_END);
 			String[] header = { "id_rodada", "nome", "posicao", "custo", "id_oponente", "media_normalizada",
-					"potencial_por_cartoleta", "pontuacao_obtida", "pontuacao_obtida_por_cartoleta", "diferenca" };
+					"potencial_por_cartoleta", "pontuacao_obtida", "pontuacao_obtida_por_cartoleta", "diferenca",
+					"rank" };
 			writer.writeNext(header);
 
 			for (ResultCase result : results) {
@@ -42,6 +43,7 @@ public class ResultWriter {
 				line.add(description.getPontuacao().toString());
 				line.add(result.getScoreByCost());
 				line.add(result.getDifference());
+				line.add(result.getRank().toString());
 				writer.writeNext(line.toArray(new String[0]));
 			}
 
