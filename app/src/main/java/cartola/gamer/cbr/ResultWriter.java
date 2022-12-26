@@ -15,25 +15,22 @@ import cartola.gamer.model.SearchQuery;
 public class ResultWriter {
 	public static void writeResult(SearchQuery searchQuery, List<ResultCase> results) {
 		try {
-			String filePath = "src/main/resources/static/csv/" + searchQuery.getId_rodada() + "_" +
-					searchQuery.getPosicao() + "_" + searchQuery.getCusto() + ".csv";
+			String filePath = "src/main/resources/static/csv/resultados.csv";
 			CSVWriter writer = new CSVWriter(
 					new OutputStreamWriter(new FileOutputStream(
-							filePath),
+							filePath, true),
 							StandardCharsets.UTF_8),
 					';',
 					CSVWriter.DEFAULT_QUOTE_CHARACTER,
 					CSVWriter.DEFAULT_ESCAPE_CHARACTER,
 					CSVWriter.DEFAULT_LINE_END);
-			String[] header = { "id_rodada", "nome", "posicao", "custo", "id_oponente", "media_normalizada",
-					"potencial_por_cartoleta", "pontuacao_obtida", "pontuacao_obtida_por_cartoleta", "diferenca",
-					"rank" };
-			writer.writeNext(header);
 
 			for (ResultCase result : results) {
 				CaseBaseDescription description = result.getDescription();
 				List<String> line = new ArrayList<String>();
 				line.add(description.getId_rodada().toString());
+				line.add(searchQuery.getCusto().toString());
+				line.add(searchQuery.getPosicao());
 				line.add(description.getNome());
 				line.add(description.getPosicao());
 				line.add(description.getCusto().toString());

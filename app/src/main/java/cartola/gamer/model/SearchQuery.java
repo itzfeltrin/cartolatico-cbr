@@ -2,8 +2,8 @@ package cartola.gamer.model;
 
 public class SearchQuery {
 	private String posicao;
-	private double custo;
-	private int id_rodada;
+	private Double custo;
+	private Integer id_rodada;
 	private boolean somente_provaveis;
 
 	public String getPosicao() {
@@ -14,19 +14,19 @@ public class SearchQuery {
 		this.posicao = posicao;
 	}
 
-	public double getCusto() {
+	public Double getCusto() {
 		return this.custo;
 	}
 
-	public void setCusto(double custo) {
+	public void setCusto(Double custo) {
 		this.custo = custo;
 	}
 
-	public int getId_rodada() {
+	public Integer getId_rodada() {
 		return this.id_rodada;
 	}
 
-	public void setId_rodada(int id_rodada) {
+	public void setId_rodada(Integer id_rodada) {
 		this.id_rodada = id_rodada;
 	}
 

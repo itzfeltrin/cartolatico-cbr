@@ -43,7 +43,7 @@ public class IndexController {
     public String index(Model model) {
         List<Clube> clubes = this.getClubes();
 
-        int[] rodadas = IntStream.rangeClosed(1, 30).toArray();
+        int[] rodadas = IntStream.rangeClosed(1, 38).toArray();
 
         model.addAttribute("query", new SearchQuery());
         model.addAttribute("clubes", clubes);

@@ -41,7 +41,7 @@ public class ResultCase implements Comparable<ResultCase> {
 			if (retrievedCaseScore == null) {
 				overallScore += 0.0;
 			} else {
-				overallScore += retrievedCaseScore;
+				overallScore += retrievedCaseScore * retrievedCase.getSimilaridadeDoCasoComAconsulta();
 			}
 		}
 		Double averageScore = overallScore / this.retrievedCaseList.size();
