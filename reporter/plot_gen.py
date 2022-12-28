@@ -10,8 +10,8 @@ def plot_graph(labels=[], data=[]):
 	df = df[df["query_posicao"] == "ata"]
 
 	fig = make_subplots(
-		rows=1,
-		cols=3,
+		rows=3,
+		cols=1,
 		subplot_titles=("Busca com 4 Cartoletas", "Busca com 8 Cartoletas", "Busca com 12 Cartoletas"),
 	)
 
@@ -24,7 +24,7 @@ def plot_graph(labels=[], data=[]):
 			text=within_budget_df["media_normalizada"],
 			name='Pontuação Esperada',
 			marker_color='indianred',
-		), row=1, col=idx + 1)
+		), row=idx + 1, col=1)
 
 		fig.append_trace(go.Bar(
 			x=within_budget_df["nome"],
@@ -32,8 +32,11 @@ def plot_graph(labels=[], data=[]):
 			text=within_budget_df["pontuacao_obtida"],
 			name='Pontuação Obtida',
 			marker_color='lightsalmon',
-		), row=1, col=idx + 1)
+		), row=idx + 1, col=1)
 
-	fig.update_layout(title_text="Busca por atacante no mercado da rodada 30")
+	fig.update_layout(
+		width=800,
+		title_text="Busca por atacante no mercado da rodada 30"
+	)
 
 	fig.show()
