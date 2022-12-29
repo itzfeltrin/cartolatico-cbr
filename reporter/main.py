@@ -60,5 +60,10 @@ with open('data/resultados.csv', 'r') as file:
 
         graph_gen = GraphGen()
 
-        if answer == 4:
+        if answer == 1:
+            position = input(dedent("""
+            Digite a posicao desejada:
+            >> """))
+            graph_gen.plot_recc_player_rank(position)
+        elif answer == 4:
             graph_gen.plot_avg_diff_by_budget()
