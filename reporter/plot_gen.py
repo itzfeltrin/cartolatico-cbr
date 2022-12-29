@@ -1,5 +1,5 @@
 import pandas as pd
-import numpy as np
+import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
@@ -20,7 +20,7 @@ class GraphGen:
 	def __init__(self) -> None:
 		self.df = pd.read_csv("data/resultados.csv")
 
-	def plot_recc_player_rank(self, position: str):
+	def plot_rec_player_rank(self, position: str):
 		if position not in POSITIONS:
 			return
 
@@ -66,6 +66,40 @@ class GraphGen:
 		)
 
 		fig.show()
+
+	def plot_avg_rec_player_rank(self):
+		data = {
+			"position": POSITIONS,
+			"recommended_avg_rank": []
+		}
+
+		for position in POSITIONS:
+			pos_df = self.df[self.df["query_posicao"] == position]
+			all_recommended = []
+			for budget in BUDGETS:
+				rec_pos_by_budget_df = pos_df[pos_df["query_orcamento"] == budget]
+				for rd in range(20, 30):
+					rec_pos_by_budget_by_round = get_recommended_by_round(rec_pos_by_budget_df, rd)
+					all_recommended.append(round(rec_pos_by_budget_by_round, 2))
+
+			data["recommended_avg_rank"].append(round(pd.Series(all_recommended).mean(), 2))
+
+		data_df = pd.DataFrame(data)
+
+		fig = px.bar(
+			data_df,
+			x="position",
+			y="recommended_avg_rank",
+			text="recommended_avg_rank",
+			title="Media do rank do jogador recomendado para todas as rodadas e orcamentos para cada posicao"
+		)
+
+		fig.update_layout(
+			width=800,
+		)
+
+		fig.show()
+
 
 	def plot_avg_diff_by_budget(self):
 		fig = make_subplots(
