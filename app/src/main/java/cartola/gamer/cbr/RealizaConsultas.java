@@ -19,21 +19,23 @@ import es.ucm.fdi.gaia.jcolibri.method.retrieve.RetrievalResult;
 
 public class RealizaConsultas {
 	Connector _connector;
-	CBRCaseBase _caseBase;
+	CBRCaseBase _caseBase = null;
 	CBR cbr = new CBR();
 
 	public RealizaConsultas() {
-		System.out.println("Iniciando RealizaConsultas...");
-		try {
-			_caseBase = cbr.initialize_caseBase();
-			System.out.println("-- _caseBase --");
-			System.out.println(_caseBase);
-			_connector = cbr.initialize_conector();
-			System.out.println("-- _connector --");
-			System.out.println(_connector);
-			_caseBase = cbr.openConnectionBase(_caseBase, _connector);
-		} catch (ExecutionException e) {
-			org.apache.commons.logging.LogFactory.getLog(CBR.class).error(e);
+		if (this._caseBase == null) {
+			System.out.println("Iniciando RealizaConsultas...");
+			try {
+				_caseBase = cbr.initialize_caseBase();
+				System.out.println("-- _caseBase --");
+				System.out.println(_caseBase);
+				_connector = cbr.initialize_conector();
+				System.out.println("-- _connector --");
+				System.out.println(_connector);
+				_caseBase = cbr.openConnectionBase(_caseBase, _connector);
+			} catch (ExecutionException e) {
+				org.apache.commons.logging.LogFactory.getLog(CBR.class).error(e);
+			}
 		}
 	}
 
@@ -63,7 +65,11 @@ public class RealizaConsultas {
 
 		Comparator<ResultCase> sortByScore = new Comparator<ResultCase>() {
 			public int compare(ResultCase a, ResultCase b) {
-				return a.getDescription().getPontuacao() > b.getDescription().getPontuacao() ? -1 : 1;
+				try {
+					return a.getDescription().getPontuacao() > b.getDescription().getPontuacao() ? -1 : 1;
+				} catch (NullPointerException ex) {
+					return 1;
+				}
 			}
 		};
 
@@ -71,8 +77,21 @@ public class RealizaConsultas {
 		Collections.sort(clonedResult, sortByScore);
 
 		for (ResultCase resultCase : result) {
-			int clonedIndex = clonedResult.indexOf(resultCase);
-			resultCase.setRank(clonedIndex + 1);
+			/*
+			 * Ranking-normalizado= (n-r+1)/n
+			 * 
+			 * Onde:
+			 * n é o número de jogadores de mesma posição é custo dentro da janela
+			 * 
+			 * R é a posição que o jogador ficou (o que vc pega hoje)
+			 */
+			Double normalizedRank = Double.valueOf(result.size() - (clonedResult.indexOf(resultCase) + 1) + 1)
+					/ result.size();
+			resultCase.setRank(normalizedRank);
+
+			/* Old way below */
+			// int clonedIndex = clonedResult.indexOf(resultCase);
+			// resultCase.setRank(clonedIndex + 1);
 		}
 
 		return result;

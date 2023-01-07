@@ -13,9 +13,12 @@ import cartola.gamer.cbr.modelo.ResultCase;
 import cartola.gamer.model.SearchQuery;
 
 public class ResultWriter {
+	// static final String fileName = "resultados.csv";
+	static final String fileName = "resultados_rank_normalizado.csv";
+
 	public static void writeResult(SearchQuery searchQuery, List<ResultCase> results) {
 		try {
-			String filePath = "src/main/resources/static/csv/resultados.csv";
+			String filePath = "src/main/resources/static/csv/" + fileName;
 			CSVWriter writer = new CSVWriter(
 					new OutputStreamWriter(new FileOutputStream(
 							filePath, true),
@@ -37,16 +40,24 @@ public class ResultWriter {
 				line.add(description.getId_oponente().toString());
 				line.add(result.getAverageScore());
 				line.add(result.getAverageScoreByCost());
-				line.add(description.getPontuacao().toString());
-				line.add(result.getScoreByCost());
-				line.add(result.getDifference());
+				if (description.getPontuacao() != null) {
+					line.add(description.getPontuacao().toString());
+					line.add(result.getScoreByCost());
+					line.add(result.getDifference());
+				} else {
+					line.add("");
+					line.add("");
+					line.add("");
+				}
+
 				line.add(result.getRank().toString());
 				writer.writeNext(line.toArray(new String[0]));
 			}
 
 			writer.close();
 		} catch (Exception ex) {
-			System.out.println(ex);
+			ex.printStackTrace();
+			// System.out.println(ex);
 		}
 	}
 }

@@ -12,20 +12,21 @@ while True:
         4. Grafico de coluna com a diferenca media por custo para todas as posicoes e rodadas
         >> """)))
 
-    if answer == -1:
-        break
-    elif answer < 1 or answer > 4: 
-        print("Entrada invalida")
-        pass
-
     graph_gen = GraphGen()
 
-    if answer == 1:
+    if answer == -1:
+        break
+    elif answer == 1:
         position = input(dedent("""
         Digite a posicao desejada:
         >> """))
         graph_gen.plot_rec_player_rank(position)
     elif answer == 2:
         graph_gen.plot_avg_rec_player_rank()
+    elif answer == 3:
+        graph_gen.plot_avg_rec_player_diff()
     elif answer == 4:
         graph_gen.plot_avg_diff_by_budget()
+    else:
+        print("Entrada invalida")
+        pass
