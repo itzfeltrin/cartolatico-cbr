@@ -29,7 +29,7 @@ class GraphGen:
 			rows=3,
 			cols=1,
 			subplot_titles=(
-				list(map(lambda x: str(x), BUDGETS))
+				list(map(lambda x: str(x), map(lambda budget: f"Orçamento de {budget} Cartoletas", BUDGETS)))
 			)
 		)
 
@@ -61,9 +61,12 @@ class GraphGen:
 				showlegend=False
 			), row=row, col=col)
 
+
+			fig.update_xaxes(title_text="Rodada", row=row, col=col)
+			fig.update_yaxes(title_text="Rank", row=row, col=col)
+
 		fig.update_layout(
 			width=1024,
-			title_text=f"Rank do {position.upper()} recomendado por orcamento a cada rodada"
 		)
 
 		fig.show()
@@ -92,7 +95,10 @@ class GraphGen:
 			x="position",
 			y="recommended_avg_rank",
 			text="recommended_avg_rank",
-			title="Media do rank do jogador recomendado para todas as rodadas e orcamentos para cada posicao"
+			labels={
+				"position": "Posição",
+				"recommended_avg_rank": "Ranking médio"
+			}
 		)
 
 		fig.update_layout(
@@ -104,7 +110,7 @@ class GraphGen:
 
 	def plot_avg_rec_player_diff(self):
 		data = {
-			"position": POSITIONS,
+			"position": map(lambda x: x.upper(), POSITIONS),
 			"recommended_avg_diff": []
 		}
 
@@ -117,7 +123,7 @@ class GraphGen:
 					rec_pos_by_budget_by_round = get_recommended_by_round(rec_pos_by_budget_df, rd, key="diferenca")
 					all_recommended.append(round(rec_pos_by_budget_by_round, 2))
 
-			data["recommended_avg_diff"].append(round(pd.Series(all_recommended).mean(), 2))
+			data["recommended_avg_diff"].append(abs(round(pd.Series(all_recommended).mean(), 2)))
 
 		data_df = pd.DataFrame(data)
 
@@ -126,7 +132,10 @@ class GraphGen:
 			x="position",
 			y="recommended_avg_diff",
 			text="recommended_avg_diff",
-			title="Media da diferenca do jogador recomendado para todas as rodadas e orcamentos para cada posicao"
+			labels={
+				"recommended_avg_diff": "Diferença média",
+				"position": "Posição"
+			}
 		)
 
 		fig.update_layout(
@@ -174,13 +183,17 @@ class GraphGen:
 				y=data["avg_value"],
 				text=data["avg_value"],
 				marker_color=index,
-				showlegend=False
+				showlegend=False,
 			), row=row, col=col)
+
+			fig.update_xaxes(title_text="Orçamento disponível", row=row, col=col)
+			fig.update_yaxes(title_text="Diferença média", row=row, col=col)
+			fig.update_yaxes(range=[0, 3], row=row, col=col)
+
 
 		fig.update_layout(
 			width=1024,
 			height=600,
-			title_text="Média da diferença por posicao de todas as rodadas"
 		)
 
 		fig.show()
